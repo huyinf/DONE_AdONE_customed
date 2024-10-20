@@ -106,7 +106,7 @@ A attributed information network (can be directed/undirected, weighted/unweighte
 
 - For a given network $G$, goal is to learn a node embedding function:
 
-  $$ f: v_i \mapsto h_i \in R^K $$
+$$ f: v_i \mapsto h_i \in R^K $$
 
   that maps every vertex to a $K$ dimensional vector, where $K < min(N,D)$.
 
