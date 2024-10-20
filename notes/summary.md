@@ -104,12 +104,9 @@ A attributed information network (can be directed/undirected, weighted/unweighte
   - **Attribute Outlier** - The attributes of the node are similar to that of nodes from different communities, i.e., **inconsistent attribute neighborhood**
   - **Combined Outlier** - Node belongs to a community structurally but it belongs to a different community in terms of attribute similarity
 
-- For a given network $G$, goal is to learn a node embedding function:
+- For a given network $G$, goal is to learn a node embedding function, that maps every vertex to a $K$ dimensional vector, where $K < min(N,D)$.
 
 $$ f: v_i \mapsto h_i \in R^K $$
-
-    
-  that maps every vertex to a $K$ dimensional vector, where $K < min(N,D)$.
 
   - The representations
     - Preserve underlying semantics of the network
