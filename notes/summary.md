@@ -138,8 +138,8 @@ Given the adjacency matrix $A$ of the network $G$
 
 $$ P^t_i = rP_i^{t-1}[D^{-1}A] + (1-r)P_i^0$$
 
-    
-        where $r \in [0,1]$ is the restart probability of the random walk (i.e. the probability of restarting the walk at the starting node). The term $(1-r)$ represents the restart mechanism, allowing the walk to reset at any step with this probability.
+  -  
+    where $r \in [0,1]$ is the restart probability of the random walk (i.e. the probability of restarting the walk at the starting node). The term $(1-r)$ represents the restart mechanism, allowing the walk to reset at any step with this probability.
 
 - Averaging of all matrices $P^1, P^2, \dots, P^T$ to capture the higher order proximities between nodes
   $$X = \frac{1}{T}\sum_{t=1}^T P^t, \quad X \in R^{N \times N}$$
