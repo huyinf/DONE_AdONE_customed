@@ -314,7 +314,7 @@ In **DONE**, we use weighted L2 norm to regularize the embedding from the struct
 
 - total loss ($\beta$'s being the weight factors)
 
-  $$\min_{\Theta,O} \mathcal{L}_{AdONE} = \beta_1\mathcal{L}_{str}^{Prox} + \beta_2\mathcal{L}_{str}^{Hom} + \mathcal{L}_{attr}^{Prox} + \beta_4\mathcal{L}_{attr}^{Hom} + \beta_5\mathcal{L}^{Alg}$$
+  $$\min\_{\Theta,O} \mathcal{L}\_{AdONE} = \beta_1\mathcal{L}\_{str}^{Prox} + \beta_2\mathcal{L}\_{str}^{Hom} + \mathcal{L}\_{attr}^{Prox} + \beta_4\mathcal{L}\_{attr}^{Hom} + \beta_5\mathcal{L}^{Alg}$$
 
 - Final embedding of a node $i$ is obtained by concatenating the embeddings for structure and attributes as $h_i = h_i^s\Vert h_i^a$
 
