@@ -206,7 +206,7 @@ $$\mathcal{L}\_{attr}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^a})}\fra
 
 - Total loss
 
-$$\min_{\Theta,O} \mathcal{L}_{DONE} = \alpha_1\mathcal{L}_{str}^{Prox} + \alpha_2\mathcal{L}_{str}^{Hom} + \alpha_3\mathcal{L}_{attr}^{Prox} + \alpha_4\mathcal{L}_{attr}^{Hom} + \alpha_5\mathcal{L}^{Com}$$
+$$\min\_{\Theta,O} \mathcal{L}\_{DONE} = \alpha_1\mathcal{L}\_{str}^{Prox} + \alpha_2\mathcal{L}\_{str}^{Hom} + \alpha_3\mathcal{L}\_{attr}^{Prox} + \alpha_4\mathcal{L}\_{attr}^{Hom} + \alpha_5\mathcal{L}^{Com}$$
 
   - $\alpha$'s being the positive weight factors
 
