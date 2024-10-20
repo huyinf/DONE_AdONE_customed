@@ -173,23 +173,25 @@ Outlier scores ($\in R$), $o_i^s,\;o_i^a,\;o_i^{com}$ corresponding to structura
     - **Example:** For a perfect network where there is no outlier present, outlier scores of all the the nodes are equal to each other, $o_i^s = o_i^a = o_i^{com} = \frac{1}{N}, \forall i$.
   - Outlier scores of each type also form a discrete probability distribution
 
-**Loss functions**
+<!-- **Loss functions** -->
 
-- **Proximity loss** (preserve the higher order proximity order int the network)
 
-  $$\mathcal{L}\_{str}^{Prox} = \frac{1}{N}\sum_{i=1}^{N} \log{(\frac{1}{o_i^s})} \Vert x_i - \hat{x}_i \Vert _2^2
+  - **Proximity loss** (preserve the higher order proximity order int the network)
+
+$$\mathcal{L}\_{str}^{Prox} = \frac{1}{N}\sum_{i=1}^{N} \log{(\frac{1}{o_i^s})} \Vert x_i - \hat{x}_i \Vert _2^2
   $$
 
-- 
+-
     - Reconstruction loss: $\Vert x_i - \hat{x}_i \Vert_2^2$
 
     - The contribution of outliers in learning process: $\log{(\frac{1}{o_i^s})}$. Larger the outlier score $o_i^s$ for some node $i$, smaller would be the value of $\log{(\frac{1}{o_i^s})}$, so the contribution to loss from this node would be less.
 
-    - **Homophily loss**
+- **Homophily loss**
 
 $$\mathcal{L}_{str}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^s - h_j^s \right \|_2^2$$
 
-      - divide the total loss over the neighbors by the degree of the node $v_i$ so that a node does not contribute significantly more because of its degree.
+-
+    - divide the total loss over the neighbors by the degree of the node $v_i$ so that a node does not contribute significantly more because of its degree.
 
 - With a similar motivation for the attribute autoencoder, we have:
 
