@@ -178,13 +178,12 @@ Outlier scores ($\in R$), $o_i^s,\;o_i^a,\;o_i^{com}$ corresponding to structura
 
 - **Proximity loss** (preserve the higher order proximity order int the network)
 
-$$\mathcal{L}\_{str}^{Prox} = \frac{1}{N}\sum_{i=1}^{N} \log{(\frac{1}{o_i^s})} \Vert x_i - \hat{x}_i \Vert _2^2
+  $$\mathcal{L}\_{str}^{Prox} = \frac{1}{N}\sum_{i=1}^{N} \log{(\frac{1}{o_i^s})} \Vert x_i - \hat{x}_i \Vert _2^2
   $$
+  
+  - Reconstruction loss: $\Vert x_i - \hat{x}_i \Vert_2^2$
 
--
-    - Reconstruction loss: $\Vert x_i - \hat{x}_i \Vert_2^2$
-
-    - The contribution of outliers in learning process: $\log{(\frac{1}{o_i^s})}$. Larger the outlier score $o_i^s$ for some node $i$, smaller would be the value of $\log{(\frac{1}{o_i^s})}$, so the contribution to loss from this node would be less.
+  - The contribution of outliers in learning process: $\log{(\frac{1}{o_i^s})}$. Larger the outlier score $o_i^s$ for some node $i$, smaller would be the value of $\log{(\frac{1}{o_i^s})}$, so the contribution to loss from this node would be less.
 
 - **Homophily loss**
 
