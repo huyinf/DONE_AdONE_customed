@@ -1,3 +1,5 @@
+<!-- github render with "\_{str} but vscode with "_{str} -->
+
 # Key concept of paper and summary
 
 ## Abstract
@@ -178,7 +180,6 @@ Outlier scores ($\in R$), $o_i^s,\;o_i^a,\;o_i^{com}$ corresponding to structura
 
 - **Proximity loss** (preserve the higher order proximity order int the network)
 
-<!-- github render with "\_{str} but vscode with "_{str} -->
   $$\mathcal{L}\_{str}^{Prox} = \frac{1}{N}\sum_{i=1}^{N} \log{(\frac{1}{o_i^s})} \Vert x_i - \hat{x}_i \Vert _2^2
   $$
   
@@ -228,7 +229,7 @@ The used optimization to learn the outlier scores turns out to be extremely slow
 
   - First, derive the update rules for the set of $o_i^s, \forall i$. The Lagrangian of $\mathcal{L}_{DONE}$ with respect to the constraint $\sum_{i=1}^N o_i^s = 1$ can be written as (ignoring the terms which do not involve $o_i^s$):
 
-    $$\mathbb{L} = \lambda \left(\sum_{i=1}^N o_i^s - 1\right) + \alpha_1 \left(\frac{1}{N}\sum_{i=1}^N \log{(\frac{1}{o_i^s})} \Vert x_i - \hat{x}_i\Vert_2^2\right) + \alpha_2 \left(\frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \Vert h_i^s - h_j^s \Vert_2^2 \right)$$
+  $$\mathbb{L} = \lambda \left(\sum_{i=1}^N o_i^s - 1\right) + \alpha_1 \left(\frac{1}{N}\sum_{i=1}^N \log{(\frac{1}{o_i^s})} \Vert x_i - \hat{x}_i\Vert_2^2\right) + \alpha_2 \left(\frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \Vert h_i^s - h_j^s \Vert_2^2 \right)$$
 
     $\lambda \in \mathbb{R}$ is the Lagrangian constant. Equating the partial derivative of the above w.r.t. $o_i^s$ to 0, we obtain:
   
