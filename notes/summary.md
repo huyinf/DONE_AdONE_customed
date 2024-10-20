@@ -315,7 +315,7 @@ In **DONE**, we use weighted L2 norm to regularize the embedding from the struct
 
   $$\min_{\Theta,O} \mathcal{L}_{AdONE} = \beta_1\mathcal{L}_{str}^{Prox} + \beta_2\mathcal{L}_{str}^{Hom} + \mathcal{L}_{attr}^{Prox} + \beta_4\mathcal{L}_{attr}^{Hom} + \beta_5\mathcal{L}^{Alg}$$
 
-- Final embedding of a node $i$ is obtained by concatenating the embeddings for structure and attributes as $h_i = h_i^s||h_i^a$
+- Final embedding of a node $i$ is obtained by concatenating the embeddings for structure and attributes as $h_i = h_i^s\Vert h_i^a$
 
 ### 4.3.1 Optimization and Training for AdONE
 
