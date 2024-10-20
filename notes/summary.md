@@ -177,7 +177,7 @@ Outlier scores ($\in R$), $o_i^s,\;o_i^a,\;o_i^{com}$ corresponding to structura
 
 - **Proximity loss** (preserve the higher order proximity order int the network)
 
-  $$\mathcal{L}\_{str}^{\text{Prox}} = \frac{1}{N}\sum_{i=1}^{N} \log{(\frac{1}{o_i^s})} \Vert x_i - \hat{x}_i \Vert _2^2
+  $$\mathcal{L}\_{str}^{Prox} = \frac{1}{N}\sum_{i=1}^{N} \log{(\frac{1}{o_i^s})} \Vert x_i - \hat{x}_i \Vert _2^2
   $$
 
 - 
