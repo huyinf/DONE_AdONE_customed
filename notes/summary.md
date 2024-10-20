@@ -178,6 +178,7 @@ Outlier scores ($\in R$), $o_i^s,\;o_i^a,\;o_i^{com}$ corresponding to structura
 
 - **Proximity loss** (preserve the higher order proximity order int the network)
 
+<!-- github render with "\_{str} but vscode with "_{str} -->
   $$\mathcal{L}\_{str}^{Prox} = \frac{1}{N}\sum_{i=1}^{N} \log{(\frac{1}{o_i^s})} \Vert x_i - \hat{x}_i \Vert _2^2
   $$
   
@@ -187,13 +188,13 @@ Outlier scores ($\in R$), $o_i^s,\;o_i^a,\;o_i^{com}$ corresponding to structura
 
 - **Homophily loss**
 
-  $$\mathcal{L}_{str}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^s - h_j^s \right \|_2^2$$
+  $$\mathcal{L}\_{str}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \Vert h_i^s - h_j^s \Vert_2^2$$
 
   - divide the total loss over the neighbors by the degree of the node $v_i$ so that a node does not contribute significantly more because of its degree.
 
 - With a similar motivation for the attribute autoencoder, we have:
 
-  $$\mathcal{L}_{attr}^{Prox} = \frac{1}{N}\sum_{i=1}^{N}\log{(\frac{1}{o_i^a})}\Vert c_i - \hat{c}_i \Vert_2^2$$
+$$\mathcal{L}\_{attr}^{Prox} = \frac{1}{N}\sum_{i=1}^{N}\log{(\frac{1}{o_i^a})}\Vert c_i - \hat{c}_i \Vert_2^2$$
 
   $$\mathcal{L}_{attr}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^a})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^a - h_j^a \right \|_2^2$$
 
