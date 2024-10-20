@@ -187,10 +187,9 @@ Outlier scores ($\in R$), $o_i^s,\;o_i^a,\;o_i^{com}$ corresponding to structura
 
 - **Homophily loss**
 
-$$\mathcal{L}_{str}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^s - h_j^s \right \|_2^2$$
+  $$\mathcal{L}_{str}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^s - h_j^s \right \|_2^2$$
 
--
-    - divide the total loss over the neighbors by the degree of the node $v_i$ so that a node does not contribute significantly more because of its degree.
+  - divide the total loss over the neighbors by the degree of the node $v_i$ so that a node does not contribute significantly more because of its degree.
 
 - With a similar motivation for the attribute autoencoder, we have:
 
