@@ -255,7 +255,7 @@ Then, alternately update the outliers scores in their respective closed form rul
 
 Then update the parameters of the autoencoders using ADAM till the convergence
 
-Final embedding of a node $i$ is obtained by concatenating the embeddings for structure and attributes as $h_i = h_i^s||h_i^a$
+Final embedding of a node $i$ is obtained by concatenating the embeddings for structure and attributes as $h_i = h_i^s\Vert h_i^a$
 
 **Time Complexity**
 
