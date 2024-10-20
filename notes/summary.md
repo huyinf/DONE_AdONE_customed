@@ -173,8 +173,8 @@ Outlier scores ($\in R$), $o_i^s,\;o_i^a,\;o_i^{com}$ corresponding to structura
     - **Example:** For a perfect network where there is no outlier present, outlier scores of all the the nodes are equal to each other, $o_i^s = o_i^a = o_i^{com} = \frac{1}{N}, \forall i$.
   - Outlier scores of each type also form a discrete probability distribution
 
-<!-- **Loss functions** -->
 
+### Loss functions
 
   - **Proximity loss** (preserve the higher order proximity order int the network)
 
