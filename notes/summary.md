@@ -108,7 +108,8 @@ A attributed information network (can be directed/undirected, weighted/unweighte
 
 $$ f: v_i \mapsto h_i \in R^K $$
 
-  that maps every vertex to a $K$ dimensional vector, where $K < min(N,D)$.
+    
+    that maps every vertex to a $K$ dimensional vector, where $K < min(N,D)$.
 
   - The representations
     - Preserve underlying semantics of the network
