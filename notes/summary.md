@@ -193,8 +193,6 @@ $$\mathcal{L}_{str}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{
 
 - With a similar motivation for the attribute autoencoder, we have:
 
-  $$\mathcal{L}^{Com} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^{com}})}\Vert h_i^s - h_i^a\Vert_2^2$$
-  
   $$\mathcal{L}_{attr}^{Prox} = \frac{1}{N}\sum_{i=1}^{N}\log{(\frac{1}{o_i^a})}\Vert c_i - \hat{c}_i \Vert_2^2$$
 
   $$\mathcal{L}_{attr}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^a})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^a - h_j^a \right \|_2^2$$
@@ -207,7 +205,7 @@ $$\mathcal{L}_{str}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{
 
 - Total loss
 
-  $$\min_{\Theta,O} \mathcal{L}_{DONE} = \alpha_1\mathcal{L}_{str}^{Prox} + \alpha_2\mathcal{L}_{str}^{Hom} + \alpha_3\mathcal{L}_{attr}^{Prox} + \alpha_4\mathcal{L}_{attr}^{Hom} + \alpha_5\mathcal{L}^{Com}$$
+$$\min_{\Theta,O} \mathcal{L}_{DONE} = \alpha_1\mathcal{L}_{str}^{Prox} + \alpha_2\mathcal{L}_{str}^{Hom} + \alpha_3\mathcal{L}_{attr}^{Prox} + \alpha_4\mathcal{L}_{attr}^{Hom} + \alpha_5\mathcal{L}^{Com}$$
 
   - $\alpha$'s being the positive weight factors
 
