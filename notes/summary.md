@@ -1,5 +1,3 @@
-<!-- github render with "\_{str} but vscode with "_{str} -->
-
 # Key concept of paper and summary
 
 ## Abstract
@@ -106,9 +104,11 @@ A attributed information network (can be directed/undirected, weighted/unweighte
   - **Attribute Outlier** - The attributes of the node are similar to that of nodes from different communities, i.e., **inconsistent attribute neighborhood**
   - **Combined Outlier** - Node belongs to a community structurally but it belongs to a different community in terms of attribute similarity
 
-- For a given network $G$, goal is to learn a node embedding function, that maps every vertex to a $K$ dimensional vector, where $K < min(N,D)$.
+- For a given network $G$, goal is to learn a node embedding function:
 
-$$ f: v_i \mapsto h_i \in R^K $$
+  $$ f: v_i \mapsto h_i \in R^K $$
+
+  that maps every vertex to a $K$ dimensional vector, where $K < min(N,D)$.
 
   - The representations
     - Preserve underlying semantics of the network
@@ -136,10 +136,8 @@ Given the adjacency matrix $A$ of the network $G$
 
   - Recursive formula for $P^t$
 
-$$ P^t_i = rP_i^{t-1}[D^{-1}A] + (1-r)P_i^0$$
-  
-  - 
-    - where $r \in [0,1]$ is the restart probability of the random walk (i.e. the probability of restarting the walk at the starting node). The term $(1-r)$ represents the restart mechanism, allowing the walk to reset at any step with this probability.
+    $$ P^t_i = rP_i^{t-1}[D^{-1}A] + (1-r)P_i^0$$
+    where $r \in [0,1]$ is the restart probability of the random walk (i.e. the probability of restarting the walk at the starting node). The term $(1-r)$ represents the restart mechanism, allowing the walk to reset at any step with this probability.
 
 - Averaging of all matrices $P^1, P^2, \dots, P^T$ to capture the higher order proximities between nodes
   $$X = \frac{1}{T}\sum_{t=1}^T P^t, \quad X \in R^{N \times N}$$
@@ -175,39 +173,36 @@ Outlier scores ($\in R$), $o_i^s,\;o_i^a,\;o_i^{com}$ corresponding to structura
     - **Example:** For a perfect network where there is no outlier present, outlier scores of all the the nodes are equal to each other, $o_i^s = o_i^a = o_i^{com} = \frac{1}{N}, \forall i$.
   - Outlier scores of each type also form a discrete probability distribution
 
-
-### Loss functions
-
+Loss functions
 - **Proximity loss** (preserve the higher order proximity order int the network)
 
-  $$\mathcal{L}\_{str}^{Prox} = \frac{1}{N}\sum_{i=1}^{N} \log{(\frac{1}{o_i^s})} \Vert x_i - \hat{x}_i \Vert _2^2
-  $$
-  
-  - Reconstruction loss: $\Vert x_i - \hat{x}_i \Vert_2^2$
+  $$\mathcal{L}_{str}^{Prox} = \frac{1}{N}\sum_{i=1}^{N} \log{(\frac{1}{o_i^s})}\left \| x_i - \hat{x}_i \right \|_2^2$$
 
-  - The contribution of outliers in learning process: $\log{(\frac{1}{o_i^s})}$. Larger the outlier score $o_i^s$ for some node $i$, smaller would be the value of $\log{(\frac{1}{o_i^s})}$, so the contribution to loss from this node would be less.
+    - Reconstruction loss: $\left \| x_i - \hat{x}_i \right \|_2^2$
 
-- **Homophily loss**
+    - The contribution of outliers in learning process: $\log{(\frac{1}{o_i^s})}$. Larger the outlier score $o_i^s$ for some node $i$, smaller would be the value of $\log{(\frac{1}{o_i^s})}$, so the contribution to loss from this node would be less.
 
-  $$\mathcal{L}\_{str}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \Vert h_i^s - h_j^s \Vert_2^2$$
+    - **Homophily loss**
 
-  - divide the total loss over the neighbors by the degree of the node $v_i$ so that a node does not contribute significantly more because of its degree.
+      $$\mathcal{L}_{str}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^s - h_j^s \right \|_2^2$$
+
+      - divide the total loss over the neighbors by the degree of the node $v_i$ so that a node does not contribute significantly more because of its degree.
 
 - With a similar motivation for the attribute autoencoder, we have:
 
-$$\mathcal{L}\_{attr}^{Prox} = \frac{1}{N}\sum_{i=1}^{N}\log{(\frac{1}{o_i^a})}\Vert c_i - \hat{c}_i \Vert_2^2$$
+  $$\mathcal{L}_{attr}^{Prox} = \frac{1}{N}\sum_{i=1}^{N} \log{(\frac{1}{o_i^a})}\left \| c_i - \hat{c}_i \right \|_2^2$$
 
-$$\mathcal{L}\_{attr}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^a})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \Vert h_i^a - h_j^a \Vert_2^2$$
+  $$\mathcal{L}_{attr}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^a})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^a - h_j^a \right \|_2^2$$
 
 - From the **homophily** property, the link structure and node attributes of a node in a network are highly correlated, hence it is important to use one complimenting the other.
 
-  $$\mathcal{L}^{Com} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^{com}})}\Vert h_i^s - h_i^a\Vert_2^2$$
+  $$\mathcal{L}^{Com} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^{com}})}\left \|h_i^s - h_i^a\right \|_2^2$$
 
   - combined outliers are different in the link structure and attribute behaviors, so we minimize their contribution in the loss.
 
 - Total loss
 
-$$\min\_{\Theta,O} \mathcal{L}\_{DONE} = \alpha_1\mathcal{L}\_{str}^{Prox} + \alpha_2\mathcal{L}\_{str}^{Hom} + \alpha_3\mathcal{L}\_{attr}^{Prox} + \alpha_4\mathcal{L}\_{attr}^{Hom} + \alpha_5\mathcal{L}^{Com}$$
+  $$\min_{\Theta,O} \mathcal{L}_{DONE} = \alpha_1\mathcal{L}_{str}^{Prox} + \alpha_2\mathcal{L}_{str}^{Hom} + \alpha_3\mathcal{L}_{attr}^{Prox} + \alpha_4\mathcal{L}_{attr}^{Hom} + \alpha_5\mathcal{L}^{Com}$$
 
   - $\alpha$'s being the positive weight factors
 
@@ -229,7 +224,7 @@ The used optimization to learn the outlier scores turns out to be extremely slow
 
   - First, derive the update rules for the set of $o_i^s, \forall i$. The Lagrangian of $\mathcal{L}_{DONE}$ with respect to the constraint $\sum_{i=1}^N o_i^s = 1$ can be written as (ignoring the terms which do not involve $o_i^s$):
 
-$$\mathbb{L} = \lambda \left(\sum_{i=1}^N o_i^s - 1\right) + \alpha_1 \left(\frac{1}{N}\sum_{i=1}^N \log{(\frac{1}{o_i^s})} \Vert x_i - \hat{x}_i\Vert_2^2\right) + \alpha_2 \left(\frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \Vert h_i^s - h_j^s \Vert_2^2 \right)$$
+    $$\mathbb{L} = \lambda \left(\sum_{i=1}^N o_i^s - 1\right) + \alpha_1 \left(\frac{1}{N}\sum_{i=1}^N \log{(\frac{1}{o_i^s})} \left \| x_i - \hat{x}_i\right \|_2^2\right) + \alpha_2 \left(\frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^s - h_j^s \right \|_2^2 \right)$$
 
     $\lambda \in \mathbb{R}$ is the Lagrangian constant. Equating the partial derivative of the above w.r.t. $o_i^s$ to 0, we obtain:
   
@@ -245,7 +240,7 @@ $$\mathbb{L} = \lambda \left(\sum_{i=1}^N o_i^s - 1\right) + \alpha_1 \left(\fra
 
     $$o_i^a = \displaystyle\frac{\alpha_3\left\|c_i - \hat{c}_i\right\|_2^2 + \alpha_4\frac{1}{\mathcal{N(i)}}\sum_{j \in \mathcal{N(i)}}\left\|h_i^a - h_j^a\right\|_2^2}{\sum_{i=1}^N\left(\alpha_3\left\|c_i - \hat{c}_i\right\|_2^2 + \alpha_4\frac{1}{\mathcal{N(i)}}\sum_{j \in \mathcal{N(i)}}\left\|h_i^a - h_j^a\right\|_2^2\right)}$$
 
-    $$o_i^{com} = \displaystyle\frac{\Verth_i^s - h_i^a\right\|_2^2}{\sum_{i=1}^N\left\|h_i^s - h_i^a\right\|_2^2}$$
+    $$o_i^{com} = \displaystyle\frac{\left \|h_i^s - h_i^a\right\|_2^2}{\sum_{i=1}^N\left\|h_i^s - h_i^a\right\|_2^2}$$
 
   - Each denominator involves a summation over all the nodes, needs to be computed only once for a full iteration.
 
@@ -257,7 +252,7 @@ Then, alternately update the outliers scores in their respective closed form rul
 
 Then update the parameters of the autoencoders using ADAM till the convergence
 
-Final embedding of a node $i$ is obtained by concatenating the embeddings for structure and attributes as $h_i = h_i^s\Vert h_i^a$
+Final embedding of a node $i$ is obtained by concatenating the embeddings for structure and attributes as $h_i = h_i^s||h_i^a$
 
 **Time Complexity**
 
@@ -315,9 +310,9 @@ In **DONE**, we use weighted L2 norm to regularize the embedding from the struct
 
 - total loss ($\beta$'s being the weight factors)
 
-  $$\min\_{\Theta,O} \mathcal{L}\_{AdONE} = \beta_1\mathcal{L}\_{str}^{Prox} + \beta_2\mathcal{L}\_{str}^{Hom} + \mathcal{L}\_{attr}^{Prox} + \beta_4\mathcal{L}\_{attr}^{Hom} + \beta_5\mathcal{L}^{Alg}$$
+  $$\min_{\Theta,O} \mathcal{L}_{AdONE} = \beta_1\mathcal{L}_{str}^{Prox} + \beta_2\mathcal{L}_{str}^{Hom} + \mathcal{L}_{attr}^{Prox} + \beta_4\mathcal{L}_{attr}^{Hom} + \beta_5\mathcal{L}^{Alg}$$
 
-- Final embedding of a node $i$ is obtained by concatenating the embeddings for structure and attributes as $h_i = h_i^s\Vert h_i^a$
+- Final embedding of a node $i$ is obtained by concatenating the embeddings for structure and attributes as $h_i = h_i^s||h_i^a$
 
 ### 4.3.1 Optimization and Training for AdONE
 
