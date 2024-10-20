@@ -199,7 +199,7 @@ $$\mathcal{L}_{str}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{
 
 - From the **homophily** property, the link structure and node attributes of a node in a network are highly correlated, hence it is important to use one complimenting the other.
 
-  $$\mathcal{L}^{Com} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^{com}})}\left \|h_i^s - h_i^a\right \|_2^2$$
+  $$\mathcal{L}^{Com} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^{com}})}\Vert h_i^s - h_i^a\Vert_2^2$$
 
   - combined outliers are different in the link structure and attribute behaviors, so we minimize their contribution in the loss.
 
