@@ -193,7 +193,7 @@ $$\mathcal{L}_{str}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{
 
 - With a similar motivation for the attribute autoencoder, we have:
 
-  $$\mathcal{L}_{attr}^{Prox} = \frac{1}{N}\sum_{i=1}^{N} \log{(\frac{1}{o_i^a})}\left \| c_i - \hat{c}_i \right \|_2^2$$
+  $$\mathcal{L}_{attr}^{Prox} = \frac{1}{N}\sum_{i=1}^{N} \log{(\frac{1}{o_i^a})}\Vert c_i - \hat{c}_i \Vert _2^2$$
 
   $$\mathcal{L}_{attr}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^a})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^a - h_j^a \right \|_2^2$$
 
