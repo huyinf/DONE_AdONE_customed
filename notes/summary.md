@@ -106,7 +106,7 @@ A attributed information network (can be directed/undirected, weighted/unweighte
 
 - For a given network $G$, goal is to learn a node embedding function:
 
-    $$ f: v_i \mapsto h_i \in R^K $$
+$$ f: v_i \mapsto h_i \in R^K $$
 
   that maps every vertex to a $K$ dimensional vector, where $K < min(N,D)$.
 
@@ -136,7 +136,8 @@ Given the adjacency matrix $A$ of the network $G$
 
   - Recursive formula for $P^t$
 
-    $$ P^t_i = rP_i^{t-1}[D^{-1}A] + (1-r)P_i^0$$
+$$ P^t_i = rP_i^{t-1}[D^{-1}A] + (1-r)P_i^0$$
+
     where $r \in [0,1]$ is the restart probability of the random walk (i.e. the probability of restarting the walk at the starting node). The term $(1-r)$ represents the restart mechanism, allowing the walk to reset at any step with this probability.
 
 - Averaging of all matrices $P^1, P^2, \dots, P^T$ to capture the higher order proximities between nodes
@@ -184,7 +185,7 @@ Loss functions
 
     - **Homophily loss**
 
-      $$\mathcal{L}_{str}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^s - h_j^s \right \|_2^2$$
+$$\mathcal{L}_{str}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^s - h_j^s \right \|_2^2$$
 
       - divide the total loss over the neighbors by the degree of the node $v_i$ so that a node does not contribute significantly more because of its degree.
 
