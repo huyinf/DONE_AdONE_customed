@@ -196,7 +196,7 @@ Outlier scores ($\in R$), $o_i^s,\;o_i^a,\;o_i^{com}$ corresponding to structura
 
 $$\mathcal{L}\_{attr}^{Prox} = \frac{1}{N}\sum_{i=1}^{N}\log{(\frac{1}{o_i^a})}\Vert c_i - \hat{c}_i \Vert_2^2$$
 
-  $$\mathcal{L}_{attr}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^a})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^a - h_j^a \right \|_2^2$$
+$$\mathcal{L}\_{attr}^{Hom} = \frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^a})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \Vert h_i^a - h_j^a \Vert_2^2$$
 
 - From the **homophily** property, the link structure and node attributes of a node in a network are highly correlated, hence it is important to use one complimenting the other.
 
@@ -228,7 +228,7 @@ The used optimization to learn the outlier scores turns out to be extremely slow
 
   - First, derive the update rules for the set of $o_i^s, \forall i$. The Lagrangian of $\mathcal{L}_{DONE}$ with respect to the constraint $\sum_{i=1}^N o_i^s = 1$ can be written as (ignoring the terms which do not involve $o_i^s$):
 
-    $$\mathbb{L} = \lambda \left(\sum_{i=1}^N o_i^s - 1\right) + \alpha_1 \left(\frac{1}{N}\sum_{i=1}^N \log{(\frac{1}{o_i^s})} \left \| x_i - \hat{x}_i\right \|_2^2\right) + \alpha_2 \left(\frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \left \| h_i^s - h_j^s \right \|_2^2 \right)$$
+    $$\mathbb{L} = \lambda \left(\sum_{i=1}^N o_i^s - 1\right) + \alpha_1 \left(\frac{1}{N}\sum_{i=1}^N \log{(\frac{1}{o_i^s})} \Vert x_i - \hat{x}_i\Vert_2^2\right) + \alpha_2 \left(\frac{1}{N}\sum_{i=1}^N\log{(\frac{1}{o_i^s})}\frac{1}{|\mathcal{N}(i)|}\sum_{j \in \mathcal{N(i)}} \Vert h_i^s - h_j^s \Vert_2^2 \right)$$
 
     $\lambda \in \mathbb{R}$ is the Lagrangian constant. Equating the partial derivative of the above w.r.t. $o_i^s$ to 0, we obtain:
   
@@ -244,7 +244,7 @@ The used optimization to learn the outlier scores turns out to be extremely slow
 
     $$o_i^a = \displaystyle\frac{\alpha_3\left\|c_i - \hat{c}_i\right\|_2^2 + \alpha_4\frac{1}{\mathcal{N(i)}}\sum_{j \in \mathcal{N(i)}}\left\|h_i^a - h_j^a\right\|_2^2}{\sum_{i=1}^N\left(\alpha_3\left\|c_i - \hat{c}_i\right\|_2^2 + \alpha_4\frac{1}{\mathcal{N(i)}}\sum_{j \in \mathcal{N(i)}}\left\|h_i^a - h_j^a\right\|_2^2\right)}$$
 
-    $$o_i^{com} = \displaystyle\frac{\left \|h_i^s - h_i^a\right\|_2^2}{\sum_{i=1}^N\left\|h_i^s - h_i^a\right\|_2^2}$$
+    $$o_i^{com} = \displaystyle\frac{\Verth_i^s - h_i^a\right\|_2^2}{\sum_{i=1}^N\left\|h_i^s - h_i^a\right\|_2^2}$$
 
   - Each denominator involves a summation over all the nodes, needs to be computed only once for a full iteration.
 
