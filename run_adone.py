@@ -57,7 +57,7 @@ def batch_iter(in_x, in_y, in_id, o1, o2, o3, batch_size, num_epochs, shuffle = 
                 idx1.append(samples[0])
                 idx2.append(samples[1])
             except ZeroDivisionError:
-                print 'Exception encountered'
+                print('Exception encountered')
                 idx1.append(order[idx])
                 idx2.append(order[idx])
                 pass
@@ -117,7 +117,7 @@ def trainer(sess, model, x_train, y_train, num_epochs):
         batcher = batch_iter(x_train, y_train, indexes, o1, o2, o3, batch_size, num_epochs)
 
         epoch = 0
-        print 'Training...'
+        print('Training...')
         for feed_dict, order, epoch_end in batcher:
             feed_dict["o1_coeff"] = o1[order]
             feed_dict["o2_coeff"] = o2[order]
@@ -133,13 +133,13 @@ def trainer(sess, model, x_train, y_train, num_epochs):
 
         struc_emb, cont_emb = model.get_hidden(sess, x_train, y_train)
         path = saver.save(sess, os.path.join(summ_file, 'model.ckpt'))
-        print 'Final model saved at', path
+        print('Final model saved at', path)
 
-        print 'Saving embeddings...'
+        print('Saving embeddings...')
         final = np.hstack((struc_emb, cont_emb))
         np.savetxt(os.path.join('emb', config['experiment_name'] + '.emb'), final)
 
-        print 'Saving outlier values...'
+        print('Saving outlier values...')
         fname = 'ovals/' + config['experiment_name'] + '-oval1'
         np.savetxt(fname, o1)
         fname = 'ovals/' + config['experiment_name'] + '-oval2'
@@ -150,18 +150,18 @@ def trainer(sess, model, x_train, y_train, num_epochs):
 args = parse_args()
 
 # Load Config
-print 'Using config path', args.config
+print('Using config path', args.config)
 config = load_config(args.config)
 
-print 'Running experiment', config['experiment_name']
+print('Running experiment', config['experiment_name'])
 
 # Read Data
-print 'Reading structure from', config['struc_file']
+print('Reading structure from', config['struc_file'])
 Adj = read_csv_file_as_numpy(config['struc_file'])
 Adj = computeRep(Adj, 3, 0.3)
-print 'Reading content from', config['cont_file']
+print('Reading content from', config['cont_file'])
 Con = read_csv_file_as_numpy(config['cont_file'])
-print 'Data load complete. Structure size', Adj.shape, '. Content size', Con.shape
+print('Data load complete. Structure size', Adj.shape, '. Content size', Con.shape)
 
 config['struc_size'] = Adj.shape[1]
 config['cont_size'] = Con.shape[1]
@@ -188,4 +188,4 @@ num_epochs = config['num_epochs']
 trainer(sess, model, Adj, Con, num_epochs)
 sess.close()
 end_time = datetime.now()
-print 'Run completed in', (end_time - start_time).seconds, 'seconds.'
+print('Run completed in', (end_time - start_time).seconds, 'seconds.')
