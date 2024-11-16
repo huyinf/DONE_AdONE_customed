@@ -12,33 +12,33 @@ class AutoEncoder(object):
         self.learning_rate = config['learning_rate']
 
     def _add_placeholders(self):
-        # self.input_x = tf.placeholder(tf.float32, [None, self.struc_size], name = "struc_input")
-        # self.input_y = tf.placeholder(tf.float32, [None, self.cont_size], name = "cont_input")
-        self.input_x = tf.keras.Input(
-            shape=(self.struc_size,), name="struc_input")
-        self.input_y = tf.keras.Input(
-            shape=(self.cont_size,), name="cont_input")
+        self.input_x = tf.placeholder(tf.float32, [None, self.struc_size], name = "struc_input")
+        self.input_y = tf.placeholder(tf.float32, [None, self.cont_size], name = "cont_input")
+        # self.input_x = tf.keras.Input(
+        #     shape=(self.struc_size,), name="struc_input")
+        # self.input_y = tf.keras.Input(
+        #     shape=(self.cont_size,), name="cont_input")
 
         # Homophily neighbors for structure and content
-        # self.input_x_neigh1 = tf.placeholder(tf.float32, [None, self.struc_size], name = "struc_input_neigh1")
-        # self.input_x_neigh2 = tf.placeholder(tf.float32, [None, self.struc_size], name = "struc_input_neigh2")
-        # self.input_y_neigh1 = tf.placeholder(tf.float32, [None, self.cont_size], name = "cont_input_neigh1")
-        # self.input_y_neigh2 = tf.placeholder(tf.float32, [None, self.cont_size], name = "cont_input_neigh2")
+        self.input_x_neigh1 = tf.placeholder(tf.float32, [None, self.struc_size], name = "struc_input_neigh1")
+        self.input_x_neigh2 = tf.placeholder(tf.float32, [None, self.struc_size], name = "struc_input_neigh2")
+        self.input_y_neigh1 = tf.placeholder(tf.float32, [None, self.cont_size], name = "cont_input_neigh1")
+        self.input_y_neigh2 = tf.placeholder(tf.float32, [None, self.cont_size], name = "cont_input_neigh2")
 
-        # self.oval1 = tf.placeholder(tf.float32, [None], name = "o1_coeff")
-        # self.oval2 = tf.placeholder(tf.float32, [None], name = "o2_coeff")
-        # self.oval3 = tf.placeholder(tf.float32, [None], name = "o3_coeff")
-        self.input_x_neigh1 = tf.keras.Input(
-            shape=(self.struc_size,), name="struc_input_neigh1")
-        self.input_x_neigh2 = tf.keras.Input(
-            shape=(self.struc_size,), name="struc_input_neigh2")
-        self.input_y_neigh1 = tf.keras.Input(
-            shape=(self.cont_size,), name="cont_input_neigh1")
-        self.input_y_neigh2 = tf.keras.Input(
-            shape=(self.cont_size,), name="cont_input_neigh2")
-        self.oval1 = tf.keras.Input(shape=(), name="o1_coeff")
-        self.oval2 = tf.keras.Input(shape=(), name="o2_coeff")
-        self.oval3 = tf.keras.Input(shape=(), name="o3_coeff")
+        self.oval1 = tf.placeholder(tf.float32, [None], name = "o1_coeff")
+        self.oval2 = tf.placeholder(tf.float32, [None], name = "o2_coeff")
+        self.oval3 = tf.placeholder(tf.float32, [None], name = "o3_coeff")
+        # self.input_x_neigh1 = tf.keras.Input(
+        #     shape=(self.struc_size,), name="struc_input_neigh1")
+        # self.input_x_neigh2 = tf.keras.Input(
+        #     shape=(self.struc_size,), name="struc_input_neigh2")
+        # self.input_y_neigh1 = tf.keras.Input(
+        #     shape=(self.cont_size,), name="cont_input_neigh1")
+        # self.input_y_neigh2 = tf.keras.Input(
+        #     shape=(self.cont_size,), name="cont_input_neigh2")
+        # self.oval1 = tf.keras.Input(shape=(), name="o1_coeff")
+        # self.oval2 = tf.keras.Input(shape=(), name="o2_coeff")
+        # self.oval3 = tf.keras.Input(shape=(), name="o3_coeff")
 
     def _add_encoder_struc(self, batch_x, reuse=False):
         xvec = batch_x
