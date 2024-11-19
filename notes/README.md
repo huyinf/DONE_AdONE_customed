@@ -32,4 +32,19 @@
             > docker run --name v1 -it graph-data-mining bash
 
     
-- Kết quả được lưu trong thư mục mới `log`
+- Kết quả được lưu trong thư mục mới `log` và `ovals`
+
+    - Sao chép ra bên ngoài `docker containers`
+
+        > docker cp <id>:<path_in_container> <path_on_host>
+
+---
+
+# Tiền xử lý mạng
+
+- Cài đặt thuật toán tạo ma trận `X`, `C` và ma trận kề `A`
+
+# Phân tích kết quả
+
+- Kết quả trong các tập tin trong thư mục `ovals` là độ dị biệt của từng loại trên từng nút
+- Rút trích các nút có độ dị biệt lớn và trực quan
